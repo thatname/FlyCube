@@ -2,7 +2,7 @@
 
 #include "Adapter/SWAdapter.h"
 
-SWInstance::SWInstance() {}
+SWInstance::SWInstance(bool) {}
 
 std::vector<std::shared_ptr<Adapter>> SWInstance::EnumerateAdapters()
 {

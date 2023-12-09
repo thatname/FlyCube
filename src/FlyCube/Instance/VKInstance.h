@@ -5,7 +5,7 @@
 
 class VKInstance : public Instance {
 public:
-    VKInstance();
+    VKInstance(bool debug);
     std::vector<std::shared_ptr<Adapter>> EnumerateAdapters() override;
     vk::Instance& GetInstance();
 

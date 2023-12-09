@@ -13,20 +13,20 @@
 #endif
 #include <cassert>
 
-std::shared_ptr<Instance> CreateInstance(ApiType type)
+std::shared_ptr<Instance> CreateInstance(ApiType type, bool debug)
 {
     switch (type) {
 #ifdef DIRECTX_SUPPORT
     case ApiType::kDX12:
-        return std::make_shared<DXInstance>();
+        return std::make_shared<DXInstance>(debug);
 #endif
 #ifdef VULKAN_SUPPORT
     case ApiType::kVulkan:
-        return std::make_shared<VKInstance>();
+        return std::make_shared<VKInstance>(debug);
 #endif
 #ifdef METAL_SUPPORT
     case ApiType::kMetal:
-        return std::make_shared<MTInstance>();
+        return std::make_shared<MTInstance>(debug);
 #endif
 #ifdef SOFTWARE_SUPPORT
     case ApiType::kSoftware:

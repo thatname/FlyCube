@@ -3,6 +3,6 @@
 
 class SWInstance : public Instance {
 public:
-    SWInstance();
+    SWInstance(bool debug);
     std::vector<std::shared_ptr<Adapter>> EnumerateAdapters() override;
 };

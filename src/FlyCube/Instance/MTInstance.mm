@@ -4,9 +4,11 @@
 
 #import <Metal/Metal.h>
 
-MTInstance::MTInstance()
+MTInstance::MTInstance(bool debug)
 {
-    setenv("METAL_DEBUG_ERROR_MODE", "5", 1);
+    if (debug) {
+        setenv("METAL_DEBUG_ERROR_MODE", "5", 1);
+    }
 }
 
 std::vector<std::shared_ptr<Adapter>> MTInstance::EnumerateAdapters()

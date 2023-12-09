@@ -3,6 +3,6 @@
 
 class MTInstance : public Instance {
 public:
-    MTInstance();
+    MTInstance(bool debug);
     std::vector<std::shared_ptr<Adapter>> EnumerateAdapters() override;
 };

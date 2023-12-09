@@ -64,7 +64,7 @@ static VKAPI_ATTR VkBool32 VKAPI_CALL DebugReportCallback(VkDebugReportFlagsEXT 
     return VK_FALSE;
 }
 
-VKInstance::VKInstance()
+VKInstance::VKInstance(bool debug)
 {
 #ifndef USE_STATIC_MOLTENVK
     PFN_vkGetInstanceProcAddr vkGetInstanceProcAddr =
@@ -75,12 +75,7 @@ VKInstance::VKInstance()
     auto layers = vk::enumerateInstanceLayerProperties();
 
     std::set<std::string> req_layers;
-#ifdef _WIN32
-    static const bool debug_enabled = IsDebuggerPresent();
-#else
-    static const bool debug_enabled = true;
-#endif
-    if (debug_enabled) {
+    if (debug) {
         req_layers.insert("VK_LAYER_KHRONOS_validation");
     }
     std::vector<const char*> found_layers;
@@ -130,7 +125,7 @@ VKInstance::VKInstance()
 #ifndef USE_STATIC_MOLTENVK
     VULKAN_HPP_DEFAULT_DISPATCHER.init(m_instance.get());
 #endif
-    if (debug_enabled) {
+    if (debug) {
         vk::DebugReportCallbackCreateInfoEXT callback_create_info = {};
         callback_create_info.flags = vk::DebugReportFlagBitsEXT::eWarning |
                                      vk::DebugReportFlagBitsEXT::ePerformanceWarning |

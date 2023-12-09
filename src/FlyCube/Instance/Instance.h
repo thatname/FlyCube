@@ -14,4 +14,4 @@ public:
     virtual std::vector<std::shared_ptr<Adapter>> EnumerateAdapters() = 0;
 };
 
-std::shared_ptr<Instance> CreateInstance(ApiType type);
+std::shared_ptr<Instance> CreateInstance(ApiType type, bool debug = false);

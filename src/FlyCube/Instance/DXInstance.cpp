@@ -46,7 +46,7 @@ EXPORT_AGILITY_SDK const char* D3D12SDKPath = u8".\\D3D12\\";
 static bool optional_agility_sdk = EnableAgilitySDKIfExist(D3D12SDKVersion, D3D12SDKPath);
 #endif
 
-DXInstance::DXInstance()
+DXInstance::DXInstance(bool debug)
 {
 #if 0
     static const GUID D3D12ExperimentalShaderModelsID = { /* 76f5573e-f13a-40f5-b297-81ce9e18933f */
@@ -59,8 +59,7 @@ DXInstance::DXInstance()
 #endif
 
     uint32_t flags = 0;
-    static const bool debug_enabled = IsDebuggerPresent();
-    if (debug_enabled) {
+    if (debug) {
         ComPtr<ID3D12Debug> debug_controller;
         if (SUCCEEDED(D3D12GetDebugInterface(IID_PPV_ARGS(&debug_controller)))) {
             debug_controller->EnableDebugLayer();
