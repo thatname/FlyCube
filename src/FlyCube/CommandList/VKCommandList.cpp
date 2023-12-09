@@ -400,15 +400,15 @@ void VKCommandList::UAVResourceBarrier(const std::shared_ptr<Resource>& /*resour
                                     vk::DependencyFlagBits::eByRegion, 1, &memory_barrier, 0, 0, 0, 0);
 }
 
-void VKCommandList::SetViewport(float x, float y, float width, float height)
+void VKCommandList::SetViewport(float x, float y, float width, float height, float min_depth, float max_depth)
 {
     vk::Viewport viewport = {};
     viewport.x = 0;
     viewport.y = height - y;
     viewport.width = width;
     viewport.height = -height;
-    viewport.minDepth = 0;
-    viewport.maxDepth = 1.0;
+    viewport.minDepth = min_depth;
+    viewport.maxDepth = max_depth;
     m_command_list->setViewport(0, 1, &viewport);
 }
 

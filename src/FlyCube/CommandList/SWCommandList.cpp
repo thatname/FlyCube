@@ -87,7 +87,7 @@ void SWCommandList::ResourceBarrier(const std::vector<ResourceBarrierDesc>& barr
 
 void SWCommandList::UAVResourceBarrier(const std::shared_ptr<Resource>& /*resource*/) {}
 
-void SWCommandList::SetViewport(float x, float y, float width, float height) {}
+void SWCommandList::SetViewport(float x, float y, float width, float height, float min_depth, float max_depth) {}
 
 void SWCommandList::SetScissorRect(int32_t left, int32_t top, uint32_t right, uint32_t bottom) {}
 

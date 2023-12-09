@@ -369,14 +369,14 @@ void MTCommandList::ResourceBarrier(const std::vector<ResourceBarrierDesc>& barr
 
 void MTCommandList::UAVResourceBarrier(const std::shared_ptr<Resource>& /*resource*/) {}
 
-void MTCommandList::SetViewport(float x, float y, float width, float height)
+void MTCommandList::SetViewport(float x, float y, float width, float height, float min_depth, float max_depth)
 {
     m_viewport.originX = x;
     m_viewport.originY = y;
     m_viewport.width = width;
     m_viewport.height = height;
-    m_viewport.znear = 0.0;
-    m_viewport.zfar = 1.0;
+    m_viewport.znear = min_depth;
+    m_viewport.zfar = max_depth;
 
     if (!m_render_encoder) {
         return;

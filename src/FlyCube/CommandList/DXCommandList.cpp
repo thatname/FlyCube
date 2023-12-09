@@ -454,15 +454,15 @@ void DXCommandList::UAVResourceBarrier(const std::shared_ptr<Resource>& resource
     m_command_list4->ResourceBarrier(1, &uav_barrier);
 }
 
-void DXCommandList::SetViewport(float x, float y, float width, float height)
+void DXCommandList::SetViewport(float x, float y, float width, float height, float min_depth, float max_depth)
 {
     D3D12_VIEWPORT viewport = {};
     viewport.TopLeftX = x;
     viewport.TopLeftY = y;
     viewport.Width = width;
     viewport.Height = height;
-    viewport.MinDepth = 0.0f;
-    viewport.MaxDepth = 1.0f;
+    viewport.MinDepth = min_depth;
+    viewport.MaxDepth = max_depth;
     m_command_list->RSSetViewports(1, &viewport);
 }
 
