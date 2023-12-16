@@ -107,7 +107,7 @@ void VKView::CreateImageView()
 {
     vk::ImageViewCreateInfo image_view_desc = {};
     image_view_desc.image = m_resource->image.res;
-    image_view_desc.format = m_resource->image.format;
+    image_view_desc.format = m_view_desc.format ? static_cast<vk::Format>(m_view_desc.format) : m_resource->image.format;
     image_view_desc.viewType = GetImageViewType(m_view_desc.dimension);
     image_view_desc.subresourceRange.baseMipLevel = GetBaseMipLevel();
     image_view_desc.subresourceRange.levelCount = GetLevelCount();
@@ -132,7 +132,7 @@ void VKView::CreateBufferView()
 {
     vk::BufferViewCreateInfo buffer_view_desc = {};
     buffer_view_desc.buffer = m_resource->buffer.res.get();
-    buffer_view_desc.format = static_cast<vk::Format>(m_view_desc.buffer_format);
+    buffer_view_desc.format = static_cast<vk::Format>(m_view_desc.format);
     buffer_view_desc.offset = m_view_desc.offset;
     buffer_view_desc.range = m_view_desc.buffer_size;
     m_buffer_view = m_device.GetDevice().createBufferViewUnique(buffer_view_desc);

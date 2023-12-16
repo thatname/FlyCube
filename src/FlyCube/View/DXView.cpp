@@ -81,7 +81,7 @@ void DXView::CreateSRV()
 {
     D3D12_SHADER_RESOURCE_VIEW_DESC srv_desc = {};
     srv_desc.Shader4ComponentMapping = D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING;
-    srv_desc.Format = m_resource->desc.Format;
+    srv_desc.Format = m_view_desc.format ? static_cast<DXGI_FORMAT>(gli::dx().translate(m_view_desc.format).DXGIFormat.DDS) : m_resource->desc.Format;
 
     if (IsTypelessDepthStencil(srv_desc.Format)) {
         if (m_view_desc.plane_slice == 0) {
@@ -154,8 +154,7 @@ void DXView::CreateSRV()
         srv_desc.ViewDimension = D3D12_SRV_DIMENSION_BUFFER;
         uint32_t stride = 0;
         if (m_view_desc.view_type == ViewType::kBuffer) {
-            srv_desc.Format = static_cast<DXGI_FORMAT>(gli::dx().translate(m_view_desc.buffer_format).DXGIFormat.DDS);
-            stride = gli::detail::bits_per_pixel(m_view_desc.buffer_format) / 8;
+            stride = gli::detail::bits_per_pixel(m_view_desc.format) / 8;
         } else {
             assert(m_view_desc.view_type == ViewType::kStructuredBuffer);
             srv_desc.Buffer.StructureByteStride = m_view_desc.structure_stride;
@@ -187,7 +186,7 @@ void DXView::CreateRAS()
 void DXView::CreateUAV()
 {
     D3D12_UNORDERED_ACCESS_VIEW_DESC uav_desc = {};
-    uav_desc.Format = m_resource->desc.Format;
+    uav_desc.Format = m_view_desc.format ? static_cast<DXGI_FORMAT>(gli::dx().translate(m_view_desc.format).DXGIFormat.DDS) : m_resource->desc.Format;
 
     switch (m_view_desc.dimension) {
     case ViewDimension::kTexture1D: {
@@ -225,8 +224,7 @@ void DXView::CreateUAV()
         uav_desc.ViewDimension = D3D12_UAV_DIMENSION_BUFFER;
         uint32_t stride = 0;
         if (m_view_desc.view_type == ViewType::kRWBuffer) {
-            uav_desc.Format = static_cast<DXGI_FORMAT>(gli::dx().translate(m_view_desc.buffer_format).DXGIFormat.DDS);
-            stride = gli::detail::bits_per_pixel(m_view_desc.buffer_format) / 8;
+            stride = gli::detail::bits_per_pixel(m_view_desc.format) / 8;
         } else {
             assert(m_view_desc.view_type == ViewType::kRWStructuredBuffer);
             uav_desc.Buffer.StructureByteStride = m_view_desc.structure_stride;

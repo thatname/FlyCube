@@ -231,13 +231,13 @@ struct ViewDesc {
     uint64_t offset = 0;
     uint32_t structure_stride = 0;
     uint64_t buffer_size = static_cast<uint64_t>(-1);
-    gli::format buffer_format = gli::format::FORMAT_UNDEFINED;
+    gli::format format = gli::format::FORMAT_UNDEFINED;
     bool bindless = false;
 
     auto MakeTie() const
     {
         return std::tie(view_type, dimension, base_mip_level, level_count, base_array_layer, layer_count, plane_slice,
-                        offset, structure_stride, buffer_size, buffer_format, bindless);
+                        offset, structure_stride, buffer_size, format, bindless);
     }
 };
 
