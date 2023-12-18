@@ -55,7 +55,7 @@ std::shared_ptr<Fence> SWDevice::CreateFence(uint64_t initial_value)
 }
 
 std::shared_ptr<Resource> SWDevice::CreateTexture(TextureType type,
-                                                  uint32_t bind_flag,
+                                                  BindFlag bind_flag,
                                                   gli::format format,
                                                   uint32_t sample_count,
                                                   int width,
@@ -66,7 +66,7 @@ std::shared_ptr<Resource> SWDevice::CreateTexture(TextureType type,
     return {};
 }
 
-std::shared_ptr<Resource> SWDevice::CreateBuffer(uint32_t bind_flag, uint32_t buffer_size)
+std::shared_ptr<Resource> SWDevice::CreateBuffer(BindFlag bind_flag, uint32_t buffer_size)
 {
     return {};
 }

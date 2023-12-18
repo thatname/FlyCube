@@ -192,7 +192,7 @@ std::shared_ptr<Fence> DXDevice::CreateFence(uint64_t initial_value)
 }
 
 std::shared_ptr<Resource> DXDevice::CreateTexture(TextureType type,
-                                                  uint32_t bind_flag,
+                                                  BindFlag bind_flag,
                                                   gli::format format,
                                                   uint32_t sample_count,
                                                   int width,
@@ -249,7 +249,7 @@ std::shared_ptr<Resource> DXDevice::CreateTexture(TextureType type,
     return res;
 }
 
-std::shared_ptr<Resource> DXDevice::CreateBuffer(uint32_t bind_flag, uint32_t buffer_size)
+std::shared_ptr<Resource> DXDevice::CreateBuffer(BindFlag bind_flag, uint32_t buffer_size)
 {
     if (buffer_size == 0) {
         return {};

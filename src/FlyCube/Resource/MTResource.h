@@ -29,7 +29,7 @@ public:
     struct Texture {
         id<MTLTexture> res;
         TextureType type = TextureType::k2D;
-        uint32_t bind_flag = 0;
+        BindFlag bind_flag = 0;
         MTLPixelFormat format = MTLPixelFormatInvalid;
         uint32_t sample_count = 1;
         int width = 1;

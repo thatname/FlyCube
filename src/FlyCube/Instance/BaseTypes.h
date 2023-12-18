@@ -18,7 +18,7 @@ class RenderPass;
 class Resource;
 class View;
 
-namespace enum_class {
+namespace enum_class_resource_state {
 enum ResourceState : uint32_t {
     kUnknown = 0,
     kCommon = 1 << 0,
@@ -43,7 +43,7 @@ enum ResourceState : uint32_t {
 };
 }
 
-using ResourceState = enum_class::ResourceState;
+using ResourceState = enum_class_resource_state::ResourceState;
 ENABLE_BITMASK_OPERATORS(ResourceState);
 
 enum class ViewDimension {
@@ -111,8 +111,8 @@ enum class TextureType {
     k3D,
 };
 
-namespace BindFlag {
-enum {
+namespace enum_class_bind_flag{
+enum BindFlag{
     kRenderTarget = 1 << 1,
     kDepthStencil = 1 << 2,
     kShaderResource = 1 << 3,
@@ -129,6 +129,8 @@ enum {
     kIndirectBuffer = 1 << 14
 };
 }
+using BindFlag = enum_class_bind_flag::BindFlag;
+ENABLE_BITMASK_OPERATORS(BindFlag);
 
 enum class FillMode { kWireframe, kSolid };
 
@@ -576,7 +578,7 @@ enum class CopyAccelerationStructureMode {
     kCompact,
 };
 
-namespace enum_class {
+namespace enum_class_build_acceleration_structure {
 enum BuildAccelerationStructureFlags {
     kNone = 0,
     kAllowUpdate = 1 << 0,
@@ -587,7 +589,7 @@ enum BuildAccelerationStructureFlags {
 };
 }
 
-using BuildAccelerationStructureFlags = enum_class::BuildAccelerationStructureFlags;
+using BuildAccelerationStructureFlags = enum_class_build_acceleration_structure::BuildAccelerationStructureFlags;
 ENABLE_BITMASK_OPERATORS(BuildAccelerationStructureFlags);
 
 struct DrawIndirectCommand {
